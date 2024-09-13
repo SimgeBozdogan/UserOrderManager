@@ -1,0 +1,82 @@
+.user-order-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px; /* Tablolar arasında boşluk bırakmak için gap ekliyoruz */
+}
+
+.user-list-section,
+.order-list-section {
+  flex: 1; /* Her iki tablo da aynı genişlikte olacak */
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-table,
+.order-table {
+  width: 100%; /* Tabloların tam genişlikte olmasını sağlıyoruz */
+  border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td,
+.order-table th,
+.order-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left; /* Hücrelerin sola yaslanmasını sağlıyoruz */
+}
+
+.user-table th,
+.order-table th {
+  background-color: #007bff; /* Başlık hücrelerine renk veriyoruz */
+  color: white;
+}
+
+.add-user-btn,
+.add-order-btn,
+.logout-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.add-user-btn:hover,
+.add-order-btn:hover,
+.logout-btn:hover {
+  background-color: #0056b3;
+}
+
+.order-form {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #eef;
+  border-radius: 8px;
+}
+
+.order-form .form-group {
+  margin-bottom: 15px;
+}
+
+.submit-order-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit-order-btn:hover {
+  background-color: #218838;
+}
