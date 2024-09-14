@@ -11,6 +11,11 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    const loggedInStatus = Cookies.get('loggedIn');
+    setIsLoggedIn(loggedInStatus);
+  }, []);
+
+  useEffect(() => {
     const savedUsers = JSON.parse(localStorage.getItem('users')) || [];
     if (savedUsers.length > 0) {
       setUsers(savedUsers);
