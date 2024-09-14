@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { DataGrid, Column } from "devextreme-react/data-grid";
@@ -17,13 +17,30 @@ function UserList({ users }) {
     quantity: "",
   });
 
-  const [orders, setOrders] = useState([
-    { id: 1, userId: 1, product: "Laptop", price: 2000, quantity: 1 },
-    { id: 2, userId: 2, product: "Mouse", price: 100, quantity: 2 },
-    { id: 3, userId: 3, product: "Telefon", price: 1500, quantity: 1 },
-    { id: 4, userId: 4, product: "Klavye", price: 300, quantity: 1 },
-    { id: 5, userId: 5, product: "Kulaklık", price: 500, quantity: 1 },
-  ]);
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await fetch("https://dummyjson.com/carts");
+        const data = await response.json();
+        const fetchedOrders = data.carts.flatMap((cart) =>
+          cart.products.map((product) => ({
+            id: product.id,
+            userId: cart.userId,
+            product: product.title,
+            price: product.price,
+            quantity: product.quantity,
+          }))
+        );
+        setOrders(fetchedOrders);
+      } catch (error) {
+        console.error("Siparişler çekilirken bir hata oluştu:", error);
+      }
+    };
+
+    fetchOrders();
+  }, []);
 
   // Kullanıcının siparişlerini alma
   const getOrdersForUser = (userId) => {
@@ -63,7 +80,7 @@ function UserList({ users }) {
       price: parseFloat(newOrder.price),
       quantity: parseInt(newOrder.quantity, 10),
     };
-    
+
     setOrders([...orders, newOrderToAdd]);
     setSelectedOrders([...selectedOrders, newOrderToAdd]);
     setNewOrder({ product: "", price: "", quantity: "" });
