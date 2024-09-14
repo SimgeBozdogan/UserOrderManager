@@ -2,12 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 20px; /* Tablolar arasında boşluk bırakmak için gap ekliyoruz */
+  gap: 20px;
 }
 
 .user-list-section,
 .order-list-section {
-  flex: 1; /* Her iki tablo da aynı genişlikte olacak */
+  flex: 1;
   background-color: #f9f9f9;
   padding: 20px;
   border-radius: 8px;
@@ -16,7 +16,7 @@
 
 .user-table,
 .order-table {
-  width: 100%; /* Tabloların tam genişlikte olmasını sağlıyoruz */
+  width: 100%;
   border-collapse: collapse;
 }
 
@@ -26,12 +26,12 @@
 .order-table td {
   border: 1px solid #ddd;
   padding: 8px;
-  text-align: left; /* Hücrelerin sola yaslanmasını sağlıyoruz */
+  text-align: left;
 }
 
 .user-table th,
 .order-table th {
-  background-color: #007bff; /* Başlık hücrelerine renk veriyoruz */
+  background-color: #007bff;
   color: white;
 }
 

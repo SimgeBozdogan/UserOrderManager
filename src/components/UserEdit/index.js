@@ -20,17 +20,17 @@ function UserEdit({ users, updateUser, deleteUser }) {
   }, [id, users]);
 
   const handleChange = (e) => {
-    setUser({ ...user, ...e }); // e is the form data change
+    setUser({ ...user, ...e });
   };
 
   const handleSave = (e) => {
-    updateUser(user); // Update the user
-    navigate('/users'); // Navigate back to user list
+    updateUser(user);
+    navigate('/users');
   };
 
   const handleDelete = () => {
-    deleteUser(user.id); // Delete the user
-    navigate('/users'); // Navigate back to user list
+    deleteUser(user.id);
+    navigate('/users');
   };
 
   return (

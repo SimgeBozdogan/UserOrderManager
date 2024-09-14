@@ -28,7 +28,6 @@ function App() {
       });
   }, []);
 
-  // Yeni kullanıcı ekleme fonksiyonu
   const addUser = (newUser) => {
     fetch("https://dummyjson.com/users/add", {
       method: "POST",
@@ -46,7 +45,6 @@ function App() {
       });
   };
 
-  // Kullanıcı güncelleme fonksiyonu
   const updateUser = (updatedUser) => {
     fetch(`https://dummyjson.com/users/${updatedUser.id}`, {
       method: "PUT",
@@ -73,7 +71,6 @@ function App() {
       });
   };
 
-  // Kullanıcı silme fonksiyonu
   const deleteUser = (userId) => {
     fetch(`https://dummyjson.com/users/${userId}`, {
       method: "DELETE",

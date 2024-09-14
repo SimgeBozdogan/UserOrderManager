@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Form, { SimpleItem, ButtonItem, RequiredRule } from 'devextreme-react/form';
-import './index.css';  // Stil dosyasını unutmayalım
+import './index.css';
 
 function Login({ setIsLoggedIn }) {
   const [loginData, setLoginData] = useState({
@@ -14,18 +14,17 @@ function Login({ setIsLoggedIn }) {
   const handleSubmit = () => {
     const { username, password } = loginData;
 
-    // Doğru kullanıcı adı ve şifre
     if (username === 'admin' && password === 'password') {
-      Cookies.set('loggedIn', 'true', { expires: 1 });  // Cookie ayarlanır
-      setIsLoggedIn(true);  // isLoggedIn güncellenir
-      navigate('/users');  // Başarılı giriş sonrası kullanıcı listesine yönlendir
+      Cookies.set('loggedIn', 'true', { expires: 1 });
+      setIsLoggedIn(true);
+      navigate('/users'); 
     } else {
-      alert('Yanlış kullanıcı adı veya şifre!');  // Yanlış girişte hata ver
+      alert('Yanlış kullanıcı adı veya şifre!');
     }
   };
 
   const handleChange = (e) => {
-    setLoginData({ ...loginData, ...e }); // Update loginData state on form data change
+    setLoginData({ ...loginData, ...e });
   };
 
   return (

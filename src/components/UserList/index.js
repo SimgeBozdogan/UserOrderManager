@@ -142,8 +142,7 @@ function UserList({ users }) {
         >
           Yeni Kullanıcı Ekle
         </button>
-
-        {/* DevExpress DataGrid */}
+        
         <DataGrid
           dataSource={users}
           showBorders={true}

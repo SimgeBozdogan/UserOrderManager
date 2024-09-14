@@ -1,27 +1,23 @@
-/* Tüm container'ı ortalamak için */
 .edit-container {
-  width: 50%; /* Genişlik ayarı */
-  margin: 50px auto; /* Üstten 50px boşluk ve ortalama */
+  width: 50%;
+  margin: 50px auto;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  text-align: center; /* İçeriği ortalıyor */
+  text-align: center;
 }
 
-/* Başlıkların stili */
 h2 {
   color: #333;
   margin-bottom: 20px;
 }
 
-/* Form grup stili */
 .form-group {
   margin-bottom: 15px;
-  text-align: left; /* Form elemanlarını sola hizalar */
+  text-align: left;
 }
 
-/* Label ve input için stil */
 .form-group label {
   display: block;
   font-weight: bold;
@@ -29,14 +25,13 @@ h2 {
 }
 
 .form-group input {
-  width: 100%; /* Genişliği tam olarak doldurur */
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
 }
 
-/* Buton stili */
 .save-btn {
   background-color: #007bff;
   color: white;
@@ -46,10 +41,9 @@ h2 {
   cursor: pointer;
   font-size: 16px;
   margin-top: 20px;
-  width: 100%; /* Butonu tam genişlikte yapar */
+  width: 100%;
 }
 
-/* Buton hover efekti */
 .save-btn:hover {
   background-color: #0056b3;
 }
@@ -62,7 +56,7 @@ h2 {
   cursor: pointer;
   font-size: 16px;
   margin-top: 20px;
-  width: 100%; /* Butonu tam genişlikte yapar */
+  width: 100%;
 }
 
 .delete-btn:hover {

@@ -11,17 +11,16 @@ function UserCreate({ addUser }) {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    // Yeni kullanıcıyı manuel olarak ekleme (simülasyon)
     const newUser = {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
     };
 
-    addUser(newUser);  // Yeni kullanıcıyı ekliyoruz
+    addUser(newUser);
 
     alert('Yeni kullanıcı başarıyla oluşturuldu!');
-    navigate('/users');  // Kullanıcı oluşturulduktan sonra listeye dön
+    navigate('/users');
   };
 
   return (
