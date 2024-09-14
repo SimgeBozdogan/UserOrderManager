@@ -30,7 +30,6 @@ function App() {
 
   // Yeni kullanıcı ekleme fonksiyonu
   const addUser = (newUser) => {
-    console.log("newUser: ", newUser);
     fetch("https://dummyjson.com/users/add", {
       method: "POST",
       headers: {
