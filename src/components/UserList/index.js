@@ -36,6 +36,9 @@ function UserList({ users }) {
             product: product.title,
             price: product.price,
             quantity: product.quantity,
+            total: product.total,
+            discountPercentage: product.discountPercentage,
+            discountedTotal: product.discountedTotal
           }))
         );
         setOrders(fetchedOrders);
@@ -173,42 +176,45 @@ function UserList({ users }) {
         {selectedUserId === null ? (
           <p>Lütfen bir kullanıcı seçiniz.</p>
         ) : selectedOrders.length > 0 ? (
-          <table className="order-table">
-            <thead>
-              <tr>
-                <th>Ürün</th>
-                <th>Fiyat</th>
-                <th>Adet</th>
-                <th>Düzenle</th>
-                <th>Sil</th>
-              </tr>
-            </thead>
-            <tbody>
-              {selectedOrders.map((order) => (
-                <tr key={order.id}>
-                  <td>{order.product}</td>
-                  <td>{order.price} TL</td>
-                  <td>{order.quantity}</td>
-                  <td>
-                    <button
-                      className="edit-order-btn"
-                      onClick={() => handleEditOrder(order)}
-                    >
-                      Düzenle
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      className="delete-order-btn"
-                      onClick={() => handleDeleteOrder(order.id)}
-                    >
-                      Sil
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <DataGrid
+            dataSource={selectedOrders}
+            showBorders={true}
+            columnAutoWidth={true}
+            keyExpr="id"
+          >
+            <Column dataField="product" caption="Title" />
+            <Column dataField="price" caption="Price" />
+            <Column dataField="quantity" caption="Quantity" />
+            <Column dataField="total" caption="Total" />
+            <Column dataField="discountPercentage" caption="Discount" />
+            <Column dataField="discountedTotal" caption="Discounted Total" />
+            <Column
+              caption="Düzenle"
+              cellRender={({ data }) => (
+                <button
+                  className="edit-order-btn"
+                  onClick={() => handleEditOrder(data)}
+                >
+                  Düzenle
+                </button>
+              )}
+              allowSorting={false}
+              allowHeaderFiltering={false}
+            />
+            <Column
+              caption="Sil"
+              cellRender={({ data }) => (
+                <button
+                  className="delete-order-btn"
+                  onClick={() => handleDeleteOrder(data.id)}
+                >
+                  Sil
+                </button>
+              )}
+              allowSorting={false}
+              allowHeaderFiltering={false}
+            />
+          </DataGrid>
         ) : (
           <p>Bu kullanıcıya ait sipariş bulunmamaktadır.</p>
         )}
