@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { DataGrid, Column } from "devextreme-react/data-grid";
-import Form, { SimpleItem, ButtonItem, RequiredRule } from "devextreme-react/form";
+import Form, {
+  SimpleItem,
+  ButtonItem,
+  RequiredRule,
+} from "devextreme-react/form";
 import "devextreme/dist/css/dx.light.css";
 import "./index.css";
 
@@ -143,8 +147,11 @@ function UserList({ users }) {
           columnAutoWidth={true}
           onRowClick={handleUserClick}
         >
-          <Column dataField="firstName" caption="Ad" />
-          <Column dataField="lastName" caption="Soyad" />
+          <Column
+            caption="User"
+            cellRender={({ data }) => `${data.firstName} ${data.lastName}`}
+          />
+          <Column dataField="phone" caption="Phone" />
           <Column dataField="email" caption="Email" />
 
           <Column
@@ -221,10 +228,18 @@ function UserList({ users }) {
             <SimpleItem dataField="product" label={{ text: "Ürün Adı" }}>
               <RequiredRule message="Ürün adı zorunludur" />
             </SimpleItem>
-            <SimpleItem dataField="price" label={{ text: "Fiyat" }} editorType="dxNumberBox">
+            <SimpleItem
+              dataField="price"
+              label={{ text: "Fiyat" }}
+              editorType="dxNumberBox"
+            >
               <RequiredRule message="Fiyat zorunludur" />
             </SimpleItem>
-            <SimpleItem dataField="quantity" label={{ text: "Adet" }} editorType="dxNumberBox">
+            <SimpleItem
+              dataField="quantity"
+              label={{ text: "Adet" }}
+              editorType="dxNumberBox"
+            >
               <RequiredRule message="Adet zorunludur" />
             </SimpleItem>
             <ButtonItem
