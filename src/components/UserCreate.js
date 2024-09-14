@@ -20,7 +20,6 @@ function UserCreate({ addUser }) {
 
     // Yeni kullanıcıyı manuel olarak ekleme (simülasyon)
     const newUser = {
-      id: Math.random(),  // Sahte bir ID oluşturuyoruz
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
