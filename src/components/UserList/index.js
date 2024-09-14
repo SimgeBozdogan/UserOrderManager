@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { DataGrid, Column } from "devextreme-react/data-grid";
+import Form, { SimpleItem, ButtonItem, RequiredRule } from "devextreme-react/form";
 import "devextreme/dist/css/dx.light.css";
-import "./UserList.css";
+import "./index.css";
 
 function UserList({ users }) {
   const navigate = useNavigate();
@@ -42,14 +43,12 @@ function UserList({ users }) {
     fetchOrders();
   }, []);
 
-  // Kullanıcının siparişlerini alma
   const getOrdersForUser = (userId) => {
     return orders.filter((order) => order.userId === userId);
   };
 
-  // Kullanıcıya tıklayınca siparişleri güncelle
   const handleUserClick = (e) => {
-    const userId = e.data.id; // DataGrid'den gelen kullanıcının ID'si
+    const userId = e.data.id;
     setSelectedUserId(userId);
     setSelectedOrders(getOrdersForUser(userId));
     setShowOrderForm(false);
@@ -61,13 +60,7 @@ function UserList({ users }) {
     setEditOrderId(null);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewOrder({ ...newOrder, [name]: value });
-  };
-
   const handleAddOrder = (e) => {
-    e.preventDefault();
     if (!newOrder.product || !newOrder.price || !newOrder.quantity) {
       alert("Lütfen tüm sipariş bilgilerini doldurun.");
       return;
@@ -98,7 +91,6 @@ function UserList({ users }) {
   };
 
   const handleSaveEditOrder = (e) => {
-    e.preventDefault();
     const updatedOrders = orders.map((order) =>
       order.id === editOrderId
         ? {
@@ -149,13 +141,12 @@ function UserList({ users }) {
           dataSource={users}
           showBorders={true}
           columnAutoWidth={true}
-          onRowClick={handleUserClick} // Kullanıcı satırına tıklayınca
+          onRowClick={handleUserClick}
         >
           <Column dataField="firstName" caption="Ad" />
           <Column dataField="lastName" caption="Soyad" />
           <Column dataField="email" caption="Email" />
 
-          {/* Düzenle butonu sütunu */}
           <Column
             dataField="id"
             caption=""
@@ -164,8 +155,8 @@ function UserList({ users }) {
                 Düzenle
               </button>
             )}
-            allowSorting={false} // Sıralama olmasın
-            allowHeaderFiltering={false} // Başlıkta filtre olmasın
+            allowSorting={false}
+            allowHeaderFiltering={false}
           />
         </DataGrid>
       </div>
@@ -220,44 +211,31 @@ function UserList({ users }) {
         </button>
 
         {showOrderForm && (
-          <form
-            className="order-form"
-            onSubmit={editOrderId ? handleSaveEditOrder : handleAddOrder}
+          <Form
+            formData={newOrder}
+            onFieldDataChanged={(e) =>
+              setNewOrder(e.component.option("formData"))
+            }
+            labelLocation="top"
           >
-            <div className="form-group">
-              <label>Ürün Adı:</label>
-              <input
-                type="text"
-                name="product"
-                value={newOrder.product}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>Fiyat:</label>
-              <input
-                type="number"
-                name="price"
-                value={newOrder.price}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>Adet:</label>
-              <input
-                type="number"
-                name="quantity"
-                value={newOrder.quantity}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <button type="submit" className="submit-order-btn">
-              {editOrderId ? "Kaydet" : "Sipariş Ekle"}
-            </button>
-          </form>
+            <SimpleItem dataField="product" label={{ text: "Ürün Adı" }}>
+              <RequiredRule message="Ürün adı zorunludur" />
+            </SimpleItem>
+            <SimpleItem dataField="price" label={{ text: "Fiyat" }} editorType="dxNumberBox">
+              <RequiredRule message="Fiyat zorunludur" />
+            </SimpleItem>
+            <SimpleItem dataField="quantity" label={{ text: "Adet" }} editorType="dxNumberBox">
+              <RequiredRule message="Adet zorunludur" />
+            </SimpleItem>
+            <ButtonItem
+              horizontalAlignment="center"
+              buttonOptions={{
+                text: editOrderId ? "Kaydet" : "Sipariş Ekle",
+                type: "success",
+                onClick: editOrderId ? handleSaveEditOrder : handleAddOrder,
+              }}
+            />
+          </Form>
         )}
 
         <button
